@@ -1,0 +1,251 @@
+/* VARIABLES */
+:root {
+  --psm: 5px;
+  --pmd: 10px;
+  --plg: 15px;
+
+  --rsm: 3px;
+  --rmd: 5px;
+
+  --input-dur: .3s;
+  --input-height: 3rem;
+  --input-btn-width: 6rem;
+
+  --color-dark: #2f2f2f;
+  --color-light: #fff;
+  --white-rgb: 255, 255, 255;
+  
+  --color-background-light: #202c33;
+  --color-background-dark: #111b21;
+  --color-text-primary: #d1d7db;
+  --color-text-secondary: #8696a0;
+  --color-bubble-sent: #005c4b;
+  --color-seen: #53bdeb;
+
+  --bez: cubic-bezier(0, 0, 0.43, 1.49);
+}
+
+/* GLOBALS */
+
+
+html { box-sizing: border-box; height: 100%; font-size: 10px; } 
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: inherit; }
+
+/* HOME PAGE */
+
+#main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background-color: var(--color-background-dark);
+  color: var(--color-text-secondary);
+}
+
+#chatListsPane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  max-height: 100vh;
+  /*border: none;
+  border-right: 5px solid #444444;
+  outline: 0;*/
+}
+#chatPane {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+
+
+  overflow: hidden;
+}
+
+#searchbar {
+  padding: var(--psm);
+}
+
+#chatsList {
+  flex: 1;
+  display: block;
+  overflow-y: auto;
+}
+
+.appBar{
+  min-height: 50px;
+  background-color: var(--color-background-light);
+}
+
+#messages{
+  flex: 1;
+  display: block;
+  flex-direction: column;
+  justify-content: end;
+  padding: var(--pmd);
+  overflow-y: auto;
+}
+
+#inputTools {
+  min-height: 75px;
+}
+
+#chatsList > .chat {
+  display: flex;
+  padding-top: var(--psm);
+  padding-bottom: var(--psm);
+}
+
+.profilePicture {
+  display: flex;
+  align-items: center;
+  padding: var(--pmd);
+}
+
+.profilePicture > .avatar {
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+}
+
+#chatsList .chat>.text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+}
+
+#chatsList .chat>.time {
+  padding-left: var(--pmd);
+  padding-right: var(--psm);
+  padding-top: var(--plg);
+}
+#chatsList .chat>.text>.displayName {
+  color: var(--color-text-primary);
+}
+
+#chatPane > .header {
+  display: flex;
+  align-items: center;
+}
+
+#chatPane > .header .displayName {
+  padding-left: var(--pmd);
+  color: var(--color-text-primary);
+  font-size: 1.5rem;
+}
+
+#chatPane > .inputTools {
+  padding: var(--psm);
+  display: flex;
+}
+
+#chatPane > .inputTools > .message {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+#chatPane > .inputTools > .emojisButton {
+  padding: var(--psm);
+}
+
+#messages .line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: var(--psm);
+}
+
+#messages .line.received {
+  align-items: flex-start;
+}
+
+#messages .line.sent {
+  align-items: flex-end;
+}
+
+#messages .daySeparator > .snack {
+  background-color: var(--color-background-light);
+  padding: var(--psm);
+  padding-left: var(--pmd);
+  padding-right: var(--pmd);
+  border-radius: var(--rsm);
+}
+
+#messages .message > .bubble {
+  padding: var(--psm);
+  padding-right: var(--pmd);
+  padding-left: var(--pmd);
+  border-radius: var(--rsm);
+}
+
+#messages .message > .bubble > .content {
+  color: var(--color-text-primary);
+}
+
+#messages .message.received > .bubble {
+  background-color: var(--color-background-light);
+}
+
+#messages .message.sent > .bubble {
+  background-color: var(--color-bubble-sent);
+}
+
+#messages .message.sent > .bubble {
+  padding-right: var(--psm);
+}
+
+
+#messages .message > .bubble > .meta {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  padding-top: var(--psm);
+}
+
+#messages .message > .bubble > .meta > .status.seen {
+  color: var(--color-seen);
+}
+
+
+/* input 
+    src: https://codepen.io/liamj/pen/vYYLGZj 
+*/
+
+input[type="text"] {
+  height: var(--input-height);
+  border: 0;
+  color: var(--color-text-primary);
+  outline: 0;
+  width: 100%;
+  background: var(--color-background-light);
+  padding: 0 1.6rem;
+  border-radius: var(--rsm);
+  appearance: none;
+  transition: all var(--input-dur) var(--bez);
+  transition-property: width, border-radius;
+  z-index: 1;
+  position: relative;
+}
+
+
+/* scrollbar
+      src: https://dev.to/xtrp/how-to-create-a-beautiful-custom-scrollbar-for-your-site-in-plain-css-1mjg
+*/
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(var(--white-rgb),.16);
+  background-clip: content-box;
+}
