@@ -1,10 +1,22 @@
 import { chats } from './mockData.js';
 import { useState } from './utils.js';
-import { ChatList } from './components/chats/ChatList.js';
-import { Chat } from './components/chat/Chat.js';
+import { InitChatList } from './components/chatsList/ChatList.js';
+import { InitChat } from './components/chat/Chat.js';
+import { ChatsStore } from './controllers/ChatsStore.js';
+export var ChatController = {
+    init: () => {
+        const chatStore = new ChatsStore(chats);
+        
+        var {get: getSelectedChatId, set: setSelectedChatId, onChange: onSelectedChatIdChanged} = useState(chats[0].id);
 
-var {get: getChats, onChange: onChatsChanged} = useState(chats);
-var {get: getSelectedChatId, set: setSelectedChatId, onChange: onSelectedChatIdChanged} = useState(chats[0].id);
+        InitChat({ chatStore, onSelectedChatIdChanged, getSelectedChatId });
+        InitChatList({ chatStore, setSelectedChatId, getSelectedChatId });
+        
+    }
+}
 
-Chat({ getChats, onSelectedChatIdChanged, getSelectedChatId })
-ChatList({ getChats, onChatsChanged, setSelectedChatId })
+ChatController.init();
+
+// todo mobile
+// todo agenjo slide
+// todo max width of messages

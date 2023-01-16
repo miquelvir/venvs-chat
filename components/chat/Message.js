@@ -10,7 +10,7 @@ const StatusMark = ({ status }) => {
 }
 
 
-export const Message = ({ content, timestamp, status, side }) => {
+export const GetMessage = ({ content, timestamp, status, side }) => {
     return htmlToElement(
         `<div class="line message ${side}">
             <div class="bubble">

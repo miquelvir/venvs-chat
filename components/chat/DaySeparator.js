@@ -1,6 +1,6 @@
 import { htmlToElement } from '../../utils.js'
 
-export const DaySeparator = ({ timestamp, ...other }) => {
+export const GetDaySeparator = ({ timestamp, ...other }) => {
     return htmlToElement(
         `<div class="line daySeparator">
             <div class="snack">

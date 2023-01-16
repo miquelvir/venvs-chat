@@ -11,9 +11,9 @@ const getSummary = (messages) => {
     return { summaryText, summaryTime };
 }
 
-export const ChatListItem = ({setSelectedChatId, avatarUri, displayName, messages, id, active = false}) => {
+export const InitChatListItem = ({setSelectedChatId, avatarUri, displayName, messages, id, getSelectedChatId}) => {
     const {summaryText, summaryTime} = getSummary(messages);
-    const node = htmlToElement(`<div class="chat ${active? 'active': ''}">
+    const node = htmlToElement(`<div class="chat ${getSelectedChatId() === id? 'active': ''}">
         <div class="profilePicture" >
             <img class="avatar" src="${avatarUri}" alt="user profile picture">
         </div>

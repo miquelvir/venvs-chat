@@ -54,6 +54,202 @@ export const chats = [
                 status: Status.SENT, 
                 side: Side.SENT,
                 type: LineType.Message
+            },
+            {
+                content: 'helloo', 
+                timestamp: new Date(Date.parse("2022-01-01T10:11:00.000Z")),
+                status: Status.SEEN, 
+                side: Side.SENT,
+                type: LineType.Message
+            },
+            {
+                content: 'we met today at dance class', 
+                timestamp: new Date(Date.parse("2022-01-01T10:12:00.000Z")), 
+                status: Status.SEEN, 
+                side: Side.SENT,
+                type: LineType.Message
+            },
+            {
+                content: 'yepp i remember u speak to you later', 
+                timestamp: new Date(Date.parse("2022-01-01T10:15:00.000Z")), 
+                status: null, 
+                side: Side.RECEIVED,
+                type: LineType.Message
+            },
+            {
+                content: 'helloo', 
+                timestamp: new Date(Date.parse("2022-01-01T23:01:00.000Z")), 
+                status: Status.SEEN, 
+                side: Side.SENT,
+                type: LineType.Message
+            },
+            {
+                content: 'wanna go for a coffe now?', 
+                timestamp: new Date(Date.parse("2022-01-01T23:03:00.000Z")), 
+                status: null, 
+                side: Side.RECEIVED,
+                type: LineType.Message
+            },
+            {
+                content: 'sureee!', 
+                timestamp: new Date(Date.parse("2022-01-01T23:17:00.000Z")), 
+                status: Status.RECEIVED, 
+                side: Side.SENT,
+                type: LineType.Message
+            },
+            {
+                content: 'u alive?', 
+                timestamp: new Date(Date.parse("2022-01-02T00:35:00.000Z")), 
+                status: Status.SENT, 
+                side: Side.SENT,
+                type: LineType.Message
+            },
+            {
+                content: 'helloo', 
+                timestamp: new Date(Date.parse("2022-01-01T10:11:00.000Z")),
+                status: Status.SEEN, 
+                side: Side.SENT,
+                type: LineType.Message
+            },
+            {
+                content: 'we met today at dance class', 
+                timestamp: new Date(Date.parse("2022-01-01T10:12:00.000Z")), 
+                status: Status.SEEN, 
+                side: Side.SENT,
+                type: LineType.Message
+            },
+            {
+                content: 'yepp i remember u speak to you later', 
+                timestamp: new Date(Date.parse("2022-01-01T10:15:00.000Z")), 
+                status: null, 
+                side: Side.RECEIVED,
+                type: LineType.Message
+            },
+            {
+                content: 'helloo', 
+                timestamp: new Date(Date.parse("2022-01-01T23:01:00.000Z")), 
+                status: Status.SEEN, 
+                side: Side.SENT,
+                type: LineType.Message
+            },
+            {
+                content: 'wanna go for a coffe now?', 
+                timestamp: new Date(Date.parse("2022-01-01T23:03:00.000Z")), 
+                status: null, 
+                side: Side.RECEIVED,
+                type: LineType.Message
+            },
+            {
+                content: 'sureee!', 
+                timestamp: new Date(Date.parse("2022-01-01T23:17:00.000Z")), 
+                status: Status.RECEIVED, 
+                side: Side.SENT,
+                type: LineType.Message
+            },
+            {
+                content: 'u alive?', 
+                timestamp: new Date(Date.parse("2022-01-02T00:35:00.000Z")), 
+                status: Status.SENT, 
+                side: Side.SENT,
+                type: LineType.Message
+            },
+            {
+                content: 'helloo', 
+                timestamp: new Date(Date.parse("2022-01-01T10:11:00.000Z")),
+                status: Status.SEEN, 
+                side: Side.SENT,
+                type: LineType.Message
+            },
+            {
+                content: 'we met today at dance class', 
+                timestamp: new Date(Date.parse("2022-01-01T10:12:00.000Z")), 
+                status: Status.SEEN, 
+                side: Side.SENT,
+                type: LineType.Message
+            },
+            {
+                content: 'yepp i remember u speak to you later', 
+                timestamp: new Date(Date.parse("2022-01-01T10:15:00.000Z")), 
+                status: null, 
+                side: Side.RECEIVED,
+                type: LineType.Message
+            },
+            {
+                content: 'helloo', 
+                timestamp: new Date(Date.parse("2022-01-01T23:01:00.000Z")), 
+                status: Status.SEEN, 
+                side: Side.SENT,
+                type: LineType.Message
+            },
+            {
+                content: 'wanna go for a coffe now?', 
+                timestamp: new Date(Date.parse("2022-01-01T23:03:00.000Z")), 
+                status: null, 
+                side: Side.RECEIVED,
+                type: LineType.Message
+            },
+            {
+                content: 'sureee!', 
+                timestamp: new Date(Date.parse("2022-01-01T23:17:00.000Z")), 
+                status: Status.RECEIVED, 
+                side: Side.SENT,
+                type: LineType.Message
+            },
+            {
+                content: 'u alive?', 
+                timestamp: new Date(Date.parse("2022-01-02T00:35:00.000Z")), 
+                status: Status.SENT, 
+                side: Side.SENT,
+                type: LineType.Message
+            },
+            {
+                content: 'helloo', 
+                timestamp: new Date(Date.parse("2022-01-01T10:11:00.000Z")),
+                status: Status.SEEN, 
+                side: Side.SENT,
+                type: LineType.Message
+            },
+            {
+                content: 'we met today at dance class', 
+                timestamp: new Date(Date.parse("2022-01-01T10:12:00.000Z")), 
+                status: Status.SEEN, 
+                side: Side.SENT,
+                type: LineType.Message
+            },
+            {
+                content: 'yepp i remember u speak to you later', 
+                timestamp: new Date(Date.parse("2022-01-01T10:15:00.000Z")), 
+                status: null, 
+                side: Side.RECEIVED,
+                type: LineType.Message
+            },
+            {
+                content: 'helloo', 
+                timestamp: new Date(Date.parse("2022-01-01T23:01:00.000Z")), 
+                status: Status.SEEN, 
+                side: Side.SENT,
+                type: LineType.Message
+            },
+            {
+                content: 'wanna go for a coffe now?', 
+                timestamp: new Date(Date.parse("2022-01-01T23:03:00.000Z")), 
+                status: null, 
+                side: Side.RECEIVED,
+                type: LineType.Message
+            },
+            {
+                content: 'sureee!', 
+                timestamp: new Date(Date.parse("2022-01-01T23:17:00.000Z")), 
+                status: Status.RECEIVED, 
+                side: Side.SENT,
+                type: LineType.Message
+            },
+            {
+                content: 'u alive?', 
+                timestamp: new Date(Date.parse("2022-01-02T00:35:00.000Z")), 
+                status: Status.SENT, 
+                side: Side.SENT,
+                type: LineType.Message
             }
         ],
         id: '2db0fe8e-ba22-4d41-a135-a9f05d7ae047'

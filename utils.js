@@ -6,7 +6,7 @@ export const htmlToElement = (html) => {
     return template.content.firstChild;
 }
 
-const uuid4 = () => {
+export const uuid4 = () => {
     const ho = (n, p) => n.toString(16).padStart(p, 0); /// Return the hexadecimal text representation of number `n`, padded with zeroes to be of length `p`
     const data = crypto.getRandomValues(new Uint8Array(16)); /// Fill the buffer with random data
     data[6] = (data[6] & 0xf) | 0x40; /// Patch the 6th byte to reflect a version 4 UUID
