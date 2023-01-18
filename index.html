@@ -7,11 +7,20 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
     </head>
     <body>
-        <div id="main">
+        <div id="loginPage" class="doodleBackground">
+            <div class="loginCard">
+                <div>Choose your username:</div>
+                <input id="usernameInput" type="text" placeholder="username">
+                <div class="hint">click enter to start!</div>
+            </div>
+        </div>
+        <div id="chatPage">
             <div class="chatListsPane">
                 <div class="appBar toolbar">
                     <div class="profilePicture">
-                        <img class="avatar" src="public/avatars/avatar0.jpg" alt="avatar1 profile picture">
+                        <img class="avatar" src="public/avatars/default-avatar.jpg" alt="avatar1 profile picture">
+                    </div>
+                    <div class="displayName">
                     </div>
                 </div>
                 <div id="searchbar">
@@ -23,12 +32,12 @@
             <div class="chatPane breakpoint-lg">
                 <div class="header appBar shadow-bottom" >
                     <div class="profilePicture">
-                        <img class="avatar" src="public/avatars/avatar2.jpg" alt="avatar1 profile picture">
+                        <img class="avatar" src="public/avatars/default-avatar.jpg" alt="avatar1 profile picture">
                     </div>
                     <div class="displayName">
                     </div>
                 </div>
-                <div class="messages" >
+                <div class="messages doodleBackground" >
            
                 </div>
                 <div class="inputTools shadow-top" >

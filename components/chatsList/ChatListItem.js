@@ -1,4 +1,5 @@
-import { htmlToElement, timestampToTime } from '../../utils.js'
+import { htmlToElement, timestampToTime } from '../../utils.js';
+import { roomInfoProviderFromType } from '../roomInfoProfiderFromRoomType.js';
 
 const getSummary = (messages) => {
     if (messages.length === 0) return {
@@ -11,14 +12,15 @@ const getSummary = (messages) => {
     return { summaryText, summaryTime };
 }
 
-export const InitChatListItem = ({setSelectedChatId, avatarUri, displayName, messages, id, getSelectedChatId}) => {
+export const CreateChatListItem = ({chatStore, displayName, messages, id, type, userStore, selectedByDefault}) => {
     const {summaryText, summaryTime} = getSummary(messages);
-    const node = htmlToElement(`<div class="chat ${getSelectedChatId() === id? 'active': ''}">
+    const { avatarUri, name } = roomInfoProviderFromType[type]({ userStore, id, displayName });
+    const node = htmlToElement(`<div class="chat ${selectedByDefault? 'active': ''}">
         <div class="profilePicture" >
             <img class="avatar" src="${avatarUri}" alt="user profile picture">
         </div>
         <div class="text">
-            <div class="displayName">${displayName}</div>
+            <div class="displayName">${name}</div>
             <div class="summary">${summaryText? summaryText: ''}</div>
         </div>
         <div class="time" >
@@ -30,7 +32,7 @@ export const InitChatListItem = ({setSelectedChatId, avatarUri, displayName, mes
             item.classList.remove('active');
         })
         node.classList.add('active');
-        setSelectedChatId(() => id);
+        chatStore.selectChat(id);
     })
 
     return node;

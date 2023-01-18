@@ -1,22 +1,15 @@
 import { InitMessages } from './Messages.js';
+import { roomInfoProviderFromType } from '../roomInfoProfiderFromRoomType.js';
 
-export const InitChat = ({ getChats, onSelectedChatIdChanged, getSelectedChatId, setChats }) => {
+export const InitChat = ({ chatStore, userStore }) => {
     const init = () => {
-        const selectedChatId = getSelectedChatId();
-        const selectedChat = getChats().find(chat => chat.id === selectedChatId);
-        InitMessages({messages: selectedChat.messages, 
-            setMessages: (newMessage) => {
-                setChats((chats) => {
-                    const thisChat = chats.find(chat => chat.id === selectedChatId);
-                    return [...chats.filter(chat => chat.id !== selectedChatId), {  // todo refactor this into a newMessageEvent
-                    ...thisChat,
-                    messages: [...thisChat.messages, newMessage] 
-                }]})}
-            })  // todo should components rerender or hold state, choose one
-        document.querySelector(".header .profilePicture .avatar").src = selectedChat.avatarUri;
-        document.querySelector(".header .displayName").innerHTML = selectedChat.displayName;
+        const selectedChat = chatStore.getChatById(chatStore.getSelectedChatId());
+        InitMessages({messages: selectedChat.messages, chatStore});
+        const { name, avatarUri} = roomInfoProviderFromType[selectedChat.type]({...selectedChat, userStore});
+        document.querySelector(".header .profilePicture .avatar").src = avatarUri;
+        document.querySelector(".header .displayName").innerHTML = name;
     }
 
-    onSelectedChatIdChanged(init);
+    chatStore.subscribeOnSelectedChatChanged(init);
     init();
 } 

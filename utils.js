@@ -21,23 +21,3 @@ export const timestampToTime = (timestamp) => new Intl.DateTimeFormat('default',
         hour: 'numeric',
         minute: 'numeric'
     }).format(timestamp).toUpperCase();
-
-
-/* layman state store */
-var __states = {};
-export const useState = (initialValue) => {
-    const id = uuid4();
-    const target = new EventTarget();
-    __states[id] = initialValue;
-    return {
-        get: () => __states[id],
-        set: (f) => {
-            __states[id] = f(__states[id]);
-            target.dispatchEvent(new Event(id));
-        },
-        onChange: (f) => {
-            target.addEventListener(id, f)
-        }
-    };
-}
-
