@@ -21,3 +21,19 @@ export const timestampToTime = (timestamp) => new Intl.DateTimeFormat('default',
         hour: 'numeric',
         minute: 'numeric'
     }).format(timestamp).toUpperCase();
+
+
+export const respondToVisibility = (element, callback) => {
+    // src: https://stackoverflow.com/a/44670818/9415337
+    var options = {
+      root: document.documentElement,
+    };
+  
+    var observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        callback(entry.intersectionRatio > 0);
+      });
+    }, options);
+  
+    observer.observe(element);
+}

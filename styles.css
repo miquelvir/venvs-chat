@@ -22,6 +22,7 @@
   --color-text-primary: #d1d7db;
   --color-text-secondary: #8696a0;
   --color-bubble-sent: #005c4b;
+  --color-bubble-sent-darker: #00473a;
   --color-seen: #53bdeb;
   --color-background-active: #2a3942;
   --color-background-hover: #202c33;
@@ -47,7 +48,7 @@ html { box-sizing: border-box; height: 100%; font-size: 10px; }
 
 /* HOME PAGE */
 
-#chatPage, #loginPage {
+#chatPage, #loginPage, #avatarPickerPage {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -56,8 +57,29 @@ html { box-sizing: border-box; height: 100%; font-size: 10px; }
   display: none;  /* initially hidden */
 }
 
+#newGroupButton {
+  position: absolute;
+  left: var(--plg);
+  bottom: var(--plg);
+  padding: var(--plg);
+  background-color: var(--color-bubble-sent);
+  border-radius: var(--psm);
+  transition: all 300ms;
+  cursor: pointer;
+  font-size: larger;
+}
+
+#newGroupButton:hover{
+  background-color: var(--color-bubble-sent-darker);
+}
+
 #loginPage {
   display: flex;  /* initially visible */
+  align-items: center;
+  justify-content: center;
+}
+
+#avatarPickerPage {
   align-items: center;
   justify-content: center;
 }
@@ -81,6 +103,41 @@ html { box-sizing: border-box; height: 100%; font-size: 10px; }
   .breakpoint-lg {
     display: none;
   }
+}
+
+.avatarsCard .avatars {
+  padding-top: var(--pmd);
+  gap: var(--plg);
+  max-width: 70vw;
+  display: grid;
+  overflow: auto;
+  padding-bottom: var(--pmd);
+}
+
+.avatarsCard .description {
+  padding-left: var(--pmd);
+  padding-bottom: var(--pmd);
+  display: flex;
+  justify-content: center;
+}
+
+.avatarsCard .avatars .avatar {
+  width: 75px;
+  height: 75px;
+  grid-row: 1;
+  transition: all 300ms;
+}
+
+.avatarsCard .avatars .avatar:hover {
+  transform: scale(1.1);
+}
+
+.avatarsCard .avatars img {
+  cursor: pointer;
+}
+
+.avatarsCard .avatars::-webkit-scrollbar {
+  height: 5px;
 }
 
 #searchbar {
@@ -153,10 +210,32 @@ html { box-sizing: border-box; height: 100%; font-size: 10px; }
   padding: var(--pmd);
 }
 
-.profilePicture > .avatar {
+.avatar {
   border-radius: 50%;
   width: 35px;
   height: 35px;
+}
+
+.with-user-info {
+  display: flex;
+  gap: var(--psm);
+  flex-direction: row;
+}
+
+.from-display-name {
+  padding-top: var(--pxsm);
+  padding-bottom: var(--pxsm);
+  font-weight: bold;
+}
+
+
+.avatar.small {
+  width: 20px;
+  height: 20px;
+}
+
+.message .avatar {
+  cursor: pointer;
 }
 
 #chatsList .chat>.text {
@@ -198,6 +277,10 @@ html { box-sizing: border-box; height: 100%; font-size: 10px; }
   padding-left: var(--pmd);
   color: var(--color-text-secondary);
   font-size: 1.5rem;
+}
+
+.chatListsPane .toolbar .avatar {
+  cursor: pointer;
 }
 
 .chatPane > .inputTools {
@@ -257,38 +340,38 @@ html { box-sizing: border-box; height: 100%; font-size: 10px; }
   border-radius: var(--rsm);
 }
 
-.messages .message > .bubble {
+.messages .message .bubble {
   padding: var(--psm);
   padding-right: var(--pmd);
   padding-left: var(--pmd);
   border-radius: var(--rsm);
 }
 
-.messages .message > .bubble > .content {
+.messages .message .bubble > .content {
   color: var(--color-text-primary);
 }
 
-.messages .message.received > .bubble {
+.messages .message.received .bubble {
   background-color: var(--color-background-light);
 }
 
-.messages .message.sent > .bubble {
+.messages .message.sent .bubble {
   background-color: var(--color-bubble-sent);
 }
 
-.messages .message.sent > .bubble {
+.messages .message.sent .bubble {
   padding-right: var(--psm);
 }
 
 
-.messages .message > .bubble > .meta {
+.messages .message .bubble > .meta {
   display: flex;
   width: 100%;
   justify-content: end;
   padding-top: var(--psm);
 }
 
-.messages .message > .bubble > .meta > .status.seen {
+.messages .message .bubble > .meta > .status.seen {
   color: var(--color-seen);
 }
 

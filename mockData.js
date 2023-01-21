@@ -213,17 +213,17 @@ export const chats = [
 
 export const users = [
     {
-        avatarUri: 'public/avatars/avatar2.jpg', 
+        avatarUri: 'public/avatars/avatar2.png', 
         displayName: 'Nerea Sastre',
         id: '92e5d4d5-1c16-4785-a656-27c2c0c7d3a9'
     },
     {
-        avatarUri: 'public/avatars/avatar0.jpg', 
+        avatarUri: 'public/avatars/avatar0.png', 
         displayName: 'Miquel Vázquez',
         id: '92e5d4d5-1c16-4785-a656-27c2c0c7d3a8'
     },
     {
-        avatarUri: 'public/avatars/avatar1.jpg', 
+        avatarUri: 'public/avatars/avatar1.png', 
         displayName: 'Júlia Coll',
         id: '92e5d4d5-1c16-4785-a656-27c2c0c7d3a7'
     }

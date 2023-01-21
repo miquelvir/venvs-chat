@@ -1,4 +1,4 @@
-import { ChatType, Side, Status, MessageContentType } from "../enums.js";
+import { ChatType, Side, Status, MessageContentType, LineType } from "../enums.js";
 
 const newChatEventId = 'new-chat';
 const selectedChatEventId = 'selected-chat-changed';
@@ -8,7 +8,7 @@ export class ChatStore {
     constructor(initialChats=[]) {
       this._chatsArray = initialChats;
       this._cacheChatIndexes();
-      this._selectedChatId = initialChats[0]?.id;
+      this._selectedChatId = initialChats.length > 0? initialChats[0]?.id: null;
 
       this._newChatTarget = new EventTarget();
       this._newMessageTarget = new EventTarget();
@@ -20,10 +20,10 @@ export class ChatStore {
     /* CHATS */
     newChat({ avatarUri, displayName, messages, id, type }){
         if (!Object.values(ChatType).includes(type)) throw new Error(`Chat type ${type} is not a valid ChatType.`);
-
-        this._chatsArray.push({ avatarUri, displayName, messages, id, type });
+        const chat = { avatarUri: avatarUri, displayName: displayName, messages: messages, id: id, type: type };
+        this._chatsArray.push(chat);
         this._cacheChatIndexes();
-        this._newChatTarget.dispatchEvent(new Event(newChatEventId));
+        this._newChatTarget.dispatchEvent(new CustomEvent(newChatEventId, { detail: { chat }}));
 
         console.debug(`${logGroup} New chat with id: ${id}`);
     }
@@ -51,7 +51,7 @@ export class ChatStore {
     /* SELECTED CHAT */
     selectChat(chatId){
         this._selectedChatId = chatId;
-        this._selectedChatIdTarget.dispatchEvent(new Event(selectedChatEventId));
+        this._selectedChatIdTarget.dispatchEvent(new CustomEvent(selectedChatEventId, { detail: { chat: this.getChatById(this.getSelectedChatId()) }}));
     }
 
     getSelectedChatId(){
@@ -67,23 +67,24 @@ export class ChatStore {
     }
 
     /* MESSAGES */
-    newMessage(chatId, {content, timestamp, status, side, contentType }){
+    newMessage(chatId, {content, timestamp, status, side, contentType, userId }){
+        if (!userId) throw new Error(`userId is required.`);
         if (!Object.values(Side).includes(side)) throw new Error(`Message side ${side} is not a valid Side.`);
         if (!Object.values(Status).includes(status)) throw new Error(`Message status ${status} is not a valid Status.`);
         if (!Object.values(MessageContentType).includes(contentType)) throw new Error(`Message contentType ${contentType} is not a valid MessageContentType.`);
-
-        this.getChatById(chatId).messages.push({content, timestamp, status, side, contentType});
-        this._newMessageTarget.dispatchEvent(new Event(chatId));
+        const message = {content, timestamp, status, side, contentType, type: LineType.Message, userId };
+        this.getChatById(chatId).messages.push(message);
+        this._newMessageTarget.dispatchEvent(new CustomEvent(chatId, { 'detail': { 'message' : message }}));
 
         console.debug(`${logGroup} New message in chat ${chatId}: ${content}`);
     }
 
     subscribeOnNewMessage(f, chatId){
-        return _newMessageTarget.addEventListener(chatId, f);
+        return this._newMessageTarget.addEventListener(chatId, f);
     }
 
     unsubscribeOnNewMessage(token){
-        _newMessageTarget.removeEventListener(token);
+        this._newMessageTarget.removeEventListener(token);
     }
     
     /* PRIVATE */
