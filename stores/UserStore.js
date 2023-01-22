@@ -24,8 +24,7 @@ export class UserStore {
     upsertUser({ avatarUri, displayName, id }){
         const userIdx = this._userIdToIdx[id];
         if (userIdx === undefined) return this.newUser({ avatarUri, displayName, id });
-        this._usersArray[userIdx] = { avatarUri, displayName, id };
-        this._userUpdatedTarget.dispatchEvent(new Event(id));
+        return this.updateUserById(id, { avatarUri, displayName });
     }
 
     getUsers(){
@@ -44,8 +43,10 @@ export class UserStore {
         /* do not edit return value by reference */
         const idx = this._userIdToIdx[userId];
         if (idx === undefined) throw new Error(`User with id ${idx} not found`);
-        this._usersArray[idx] = {...this._usersArray[idx] , ...user};
-        this._userUpdatedTarget.dispatchEvent(new Event(userId));
+        const updatedUser = {...this._usersArray[idx] , ...user};
+        if (JSON.stringify(this._usersArray[idx]) === JSON.stringify(updatedUser)) return;  // no changes
+        this._usersArray[idx] = updatedUser;
+        this._userUpdatedTarget.dispatchEvent(new CustomEvent(userId, { detail: { user: updatedUser }}));
         console.debug(`${logGroup} User ${userId} updated: ${JSON.stringify(user)}`)
     }
 
@@ -53,16 +54,8 @@ export class UserStore {
         return this._newUserTarget.addEventListener(newUserEventId, f);
     }
 
-    unsubscribeOnNewUser(token){
-        this._newUserTarget.removeEventListener(token);
-    }
-
     subscribeOnUserUpdated(userId, f){
         return this._userUpdatedTarget.addEventListener(userId, f);
-    }
-
-    unsubscribeOnUserUpdated(token){
-        this._userUpdatedTarget.removeEventListener(token);
     }
     
     /* PRIVATE */

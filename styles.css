@@ -199,6 +199,11 @@ html { box-sizing: border-box; height: 100%; font-size: 10px; }
   background-color: var(--color-background-active);
 }
 
+.support-emojis {
+  font-family: Color Emoji,Segoe UI Emoji,Noto Color Emoji,Android Emoji,EmojiSymbols,EmojiOne Mozilla,Twemoji Mozilla,Segoe UI Symbol,Noto Color Emoji Compat,emoji,noto-emojipedia-fallback;
+  font-weight: 400;
+  font-size: 1.3rem;
+}
 
 #chatsList .chat:hover:not(.active) {
   background-color: var(--color-background-hover);

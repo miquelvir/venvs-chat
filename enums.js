@@ -3,11 +3,6 @@ export const LineType = {
     DayDivider: 'day-divider'
 }
 
-export const ChatType = {
-    DirectMessage: 'direct-message',
-    Group: 'group'
-}
-
 export const Side = {
     SENT: 'sent',
     RECEIVED: 'received'
@@ -20,7 +15,8 @@ export const Status = {
 }
 
 export const MessageContentType = {
-    PlainText: 'text'
+    PlainText: 'text',
+    History: 'history'
 }
 
 export const Page = { 

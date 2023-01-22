@@ -1,32 +1,27 @@
-import { CreateChatListItem } from "./ChatListItem.js";
-import { InitCurrentUserInfo } from "./CurrentUserInfo.js";
-import { ChatType } from "../../../enums.js";
-export const InitChatList = ({  chatStore, userStore, showLoginPicker }) => {
+import { CreateRoomListItem } from "./RoomListItem.js";
+import { InitCurrentUserInfo } from "../CurrentUserInfo.js";
+
+export const InitRoomList = ({  roomStore, userStore, showLoginPicker }) => {
     InitCurrentUserInfo({ userStore, showLoginPicker });
 
     document.querySelector("#newGroupButton").addEventListener('click', () => {
         const displayName = prompt("Room name"); // todo dont use prompt
-        chatStore.newChat({ 
+        roomStore.createRoom({ 
             avatarUri: '/public/avatars/default-avatar.jpg', 
             displayName: displayName, 
-            messages: [], 
-            id: displayName, 
-            type: ChatType.Group
+            id: displayName
         })
     })
     
     const node = document.querySelector("#chatsList");
-    const addChat = (chat) => node.appendChild(CreateChatListItem({userStore, ...chat, chatStore, selectedByDefault: chatStore.getSelectedChatId() === chat.id}));
+    const addRoom = (room) => node.appendChild(CreateRoomListItem({userStore, ...room, roomStore, selectedByDefault: roomStore.getSelectedRoomId() === room.id}));
     
     document.querySelector("#searchbar").addEventListener('input', (event) => {
         const query = event.target.value.toLowerCase();
-        const chats = chatStore.getChats();
-        console.log(node.children)
+        const chats = roomStore.getRooms();
         let idx = 0;
         for (const child of node.children)
         {
-            console.log(child)
-            console.log(chats[idx].displayName)
             if (chats[idx].displayName.toLowerCase().includes(query)){
                 child.style.display = 'flex';
             } else {
@@ -36,8 +31,8 @@ export const InitChatList = ({  chatStore, userStore, showLoginPicker }) => {
         }
     })
 
-    chatStore.getChats().forEach(addChat);
-    chatStore.subscribeOnNewChat(( { detail }) => addChat(detail.chat))
+    roomStore.getRooms().forEach(addRoom);
+    roomStore.subscribeOnNewRoom(( { detail }) => addRoom(detail.room))
     
     return node;
 }

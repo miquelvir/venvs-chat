@@ -11,17 +11,17 @@ export class CurrentUserIdStore {
     }
 
     setId(id){ 
-        this._id = id;
+        this._id = parseInt(id);
         console.debug(`${logGroup} User id set to: ${id}`);
         this._userInfoChangedTarget.dispatchEvent(new Event(userInfoChangedEventId));
     } 
     getId(){ return this._id; } 
 
-    subscribeOnUserInfoChanged(f){
+    subscribeOnUserInfoChanged(f){ 
         return this._userInfoChangedTarget.addEventListener(userInfoChangedEventId, f);
     }
 
-    unsubscribeOnUserInfoChanged(token){
+    unsubscribeOnUserInfoChanged(token){ // todo
         this._userInfoChangedTarget.removeEventListener(token);
     }
   }

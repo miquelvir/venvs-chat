@@ -17,7 +17,7 @@ export const uuid4 = () => {
 
 export const timestampToTime = (timestamp) => new Intl.DateTimeFormat('default',
     {
-        hour12: true,
+        hour12: false,
         hour: 'numeric',
         minute: 'numeric'
     }).format(timestamp).toUpperCase();

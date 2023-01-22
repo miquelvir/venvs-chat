@@ -1,4 +1,4 @@
-import { INTERNAL_CURRENT_USER_ID } from "../../../enums.js";
+import { INTERNAL_CURRENT_USER_ID } from "../../enums.js";
 
 export const InitCurrentUserInfo = ({ userStore, showLoginPicker }) => {
     const init = () => {

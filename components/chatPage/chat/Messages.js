@@ -1,5 +1,4 @@
 import { chatLineFactory } from './chatLineFactory.js';
-import { InitNewMessageInput } from './NewMessageInput.js';
 import { LineType } from "../../../enums.js";
 
 export const constructLines = (messages) => {
@@ -21,27 +20,24 @@ export const constructLines = (messages) => {
 }
 
 
-export const InitMessages = ({ chatStore, userStore }) => {
-    InitNewMessageInput({chatStore})
-
-    const selectedChatId = chatStore.getSelectedChatId();
+let newMessageSubscriptionCancelToken = null;
+export const InitMessages = ({ roomStore, userStore, messageStore }) => {
+    const selectedChatId = roomStore.getSelectedRoomId();
     if (selectedChatId === null) return;
-    const selectedChat = chatStore.getChatById(selectedChatId);
-        
+
     const node = document.querySelector(".messages");
     node.replaceChildren();  // empty
-    constructLines(selectedChat.messages).forEach((line) => {
-        node.appendChild(chatLineFactory({ userStore, chatType: selectedChat.type, ...line}))
+    constructLines(messageStore.getMessages()).forEach((line) => {  // todo refactor to on new chat only
+        node.appendChild(chatLineFactory({ userStore, ...line}))
     });
 
-    const scrollDown = () => node.scroll({ top: node.scrollHeight, behavior: 'smooth' });;
-
-    chatStore.subscribeOnNewMessage((event) => {
-        console.log(event.detail.message)
-        node.appendChild(chatLineFactory({ userStore, chatType: selectedChat.type, ...event.detail.message}));  // todo pass message without this
-        scrollDown();
-    }, selectedChatId);
-
+    const scrollDown = () => node.scroll({ top: node.scrollHeight, behavior: 'smooth' });
     scrollDown();
+
+    newMessageSubscriptionCancelToken = messageStore.subscribeOnNewMessage((event) => {
+        node.appendChild(chatLineFactory({ userStore, ...event.detail.message}));  // todo pass message without this
+        scrollDown();
+    }, newMessageSubscriptionCancelToken);
+
     return node;
 }

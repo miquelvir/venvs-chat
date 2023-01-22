@@ -1,28 +1,27 @@
 import { InitMessages } from './Messages.js';
-import { roomInfoProviderFromType } from '../roomInfoProfiderFromRoomType.js';
+import { InitNewMessageInput } from './NewMessageInput.js';
 
-export const InitChat = ({ chatStore, userStore }) => {
+export const InitChat = ({ roomStore, userStore, messageStore }) => {
+    InitNewMessageInput({ messageStore });
+
     const init = () => {
-        InitMessages({ chatStore, userStore });
-
+        InitMessages({roomStore, userStore, messageStore })
         const profilePictureNode = document.querySelector(".header .profilePicture .avatar");
         const input = document.querySelector(".inputTools");
 
-        const selectedChatId = chatStore.getSelectedChatId();
+        const selectedChatId = roomStore.getSelectedRoomId();
         if (selectedChatId === null) {
             profilePictureNode.style.visibility = 'hidden';
             input.style.visibility = 'hidden';
             return;
         }
 
-        const selectedChat = chatStore.getChatById(selectedChatId);
-        const { name, avatarUri} = roomInfoProviderFromType[selectedChat.type]({...selectedChat, userStore});
-        profilePictureNode.src = avatarUri;
+        const selectedChat = roomStore.getRoomById(selectedChatId);
         profilePictureNode.style.visibility = 'visible';
         input.style.visibility = 'visible';
-        document.querySelector(".header .displayName").innerHTML = name;
+        document.querySelector(".header .displayName").innerHTML = selectedChat.displayName;
     }
 
-    chatStore.subscribeOnSelectedChatChanged(init);
+    roomStore.subscribeOnSelectedRoomChanged(init);
     init();
 } 
