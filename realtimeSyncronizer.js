@@ -74,10 +74,12 @@ export const InitRealtimeSyncronizer = ({ userStore, roomStore, currentUserIdSto
 
         if (message.type === MessageType.History) {
             console.debug(`${logGroup} Received history from ${authorId}: ${message.content.length} messages`);
+            const my = userStore.getUserById(INTERNAL_CURRENT_USER_ID);
+        
             message.content.forEach(message => {
                 if (!message.userId) message.userId = 9999999999; // for chat clients that are not sending user id
                 userStore.upsertUser({ avatarUri: message.avatarUri, username: message.username, id: message.userId })  // todo update or create
-                messageStore.newMessage(message);
+                messageStore.newMessage({...message, side: message.username === my.username? Side.SENT: Side.RECEIVED});
             })
         } else if (message.type === MessageType.PlainText) {
             userStore.upsertUser({ avatarUri: message.avatarUri, username: message.username, id: authorId })  // todo update or create
