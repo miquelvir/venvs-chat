@@ -1,4 +1,4 @@
-import { LineType, Status, Side, MessageContentType, INTERNAL_CURRENT_USER_ID } from "../../../constants.js";
+import { Status, Side, MessageType, INTERNAL_CURRENT_USER_ID } from "../../../constants.js";
 
 const WELL_KNOWN_EMOJIS = {
     ':)': '☺️',
@@ -56,8 +56,7 @@ export const InitNewMessageInput = ({ messageStore }) => {
             timestamp: new Date(),
             status: Status.SENT, 
             side: Side.SENT,
-            type: LineType.Message,
-            contentType: MessageContentType.PlainText,
+            type: MessageType.PlainText,
             userId: INTERNAL_CURRENT_USER_ID  // sent from us
         });
         newMessageInput.value = '';  // reset

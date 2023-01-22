@@ -23,6 +23,17 @@ AVATARS FEATURE
 - The protocol proposal sends the username with each message. For consistency, we do the same with the avatar. This is not optimal.
 - You can click your avatar in the top left corner to change it. Other users will see the changes reflected when you send a message in the room.
 
+ROOM DISCOVERY FEATURE
+- Every 15s, the realtimeSyncronizer polls the server to see what new public rooms are active.
+- All new rooms are added to the room list in the left pane.
+
+ROOM LIST SEARCH FEATURE
+- On top of the room list, there is a search bar. 
+- Start typing to filter the list.
+
+SHORTCUTS
+- Press ESC when creating a new room or changing the avatar to go back to the chat page without changing anything.
+
 CREDITS
 Avatars by https://getavataaars.com/
 Favicon created by dmitri13 - Flaticon (https://www.flaticon.com/free-icon/chat_811476?term=chat&page=1&position=21&origin=tag&related_id=811476)

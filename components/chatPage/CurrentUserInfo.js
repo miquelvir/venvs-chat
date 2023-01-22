@@ -6,7 +6,7 @@ export const InitCurrentUserInfo = ({ userStore, showLoginPicker }) => {
         const avatar = document.querySelector(".toolbar .profilePicture .avatar");
         avatar.src = user.avatarUri;
         avatar.addEventListener('click', showLoginPicker);
-        document.querySelector(".toolbar .displayName").innerHTML = user.displayName;
+        document.querySelector(".toolbar .username").innerHTML = user.username;
     };
     
     init();

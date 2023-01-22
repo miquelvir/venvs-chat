@@ -17,8 +17,8 @@ export class RoomStore {
     }
 
     /* CHATS */
-    createRoom({ avatarUri, displayName, id }){
-        const room = { avatarUri: avatarUri, displayName: displayName, id: id };
+    createRoom({ avatarUri, username, id }){
+        const room = { avatarUri: avatarUri, username: username, id: id };
         this._roomsArray.push(room);
         this._cacheRoomIndexes();
         this._newRoomTarget.dispatchEvent(new CustomEvent(newRoomEventId, { detail: { room }}));
@@ -42,16 +42,12 @@ export class RoomStore {
         return this._newRoomTarget.addEventListener(newRoomEventId, f);
     }
 
-    unsubscribeOnNewRoom(token){
-        this._newRoomTarget.removeEventListener(token);
-    }
-
     /* SELECTED CHAT */
     selectRoom(roomId){
         this._selectedRoomId = roomId;
         this._messageStore.reset();
         this._selectedRoomIdTarget.dispatchEvent(new CustomEvent(selectedRoomEventId, { detail: { room: this.getRoomById(this.getSelectedRoomId()) }}));
-        console.debug(`Selected room with id: ${roomId}`);
+        console.debug(`${logGroup} Selected room with id: ${roomId}`);
     }
 
     getSelectedRoomId(){
@@ -62,10 +58,6 @@ export class RoomStore {
         return this._selectedRoomIdTarget.addEventListener(selectedRoomEventId, f);
     }
 
-    unsubscribeOnSelectedRoomChanged(token){
-        this._selectedRoomIdTarget.removeEventListener(token);
-    }
-    
     /* PRIVATE */
     _cacheRoomIndexes(){
         this._roomIndexesCache = Object.assign({}, ...this._roomsArray.map((chat, idx) => ({[chat.id]: idx})));

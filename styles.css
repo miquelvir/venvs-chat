@@ -231,6 +231,7 @@ html { box-sizing: border-box; height: 100%; font-size: 10px; }
   display: flex;
   gap: var(--psm);
   flex-direction: row;
+  max-width: 60%;
 }
 
 .from-display-name {
@@ -262,7 +263,7 @@ html { box-sizing: border-box; height: 100%; font-size: 10px; }
   padding-right: var(--pmd);
   padding-top: var(--plg);
 }
-#chatsList .chat>.text>.displayName {
+#chatsList .chat>.text>.username {
   color: var(--color-text-primary);
   font-size: 1.2rem;
   padding-bottom: var(--pxsm);
@@ -273,7 +274,7 @@ html { box-sizing: border-box; height: 100%; font-size: 10px; }
   align-items: center;
 }
 
-.chatPane > .header .displayName {
+.chatPane > .header .username {
   padding-left: var(--pmd);
   color: var(--color-text-primary);
   font-size: 1.5rem;
@@ -284,7 +285,7 @@ html { box-sizing: border-box; height: 100%; font-size: 10px; }
   align-items: center;
 }
 
-.chatListsPane .toolbar .displayName {
+.chatListsPane .toolbar .username {
   padding-left: var(--pmd);
   color: var(--color-text-secondary);
   font-size: 1.5rem;
@@ -370,6 +371,7 @@ html { box-sizing: border-box; height: 100%; font-size: 10px; }
   padding-right: var(--pmd);
   padding-left: var(--pmd);
   border-radius: var(--rsm);
+  overflow-wrap: anywhere;
 }
 
 .messages .message .bubble > .content {

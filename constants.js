@@ -1,8 +1,3 @@
-export const LineType = {
-    Message: 'message',
-    DayDivider: 'day-divider'
-}
-
 export const Side = {
     SENT: 'sent',
     RECEIVED: 'received'
@@ -14,7 +9,7 @@ export const Status = {
     RECEIVED: 'received'
 }
 
-export const MessageContentType = {
+export const MessageType = {
     PlainText: 'text',
     History: 'history'
 }

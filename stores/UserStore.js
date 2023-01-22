@@ -13,18 +13,18 @@ export class UserStore {
     }
 
     /* USERS */
-    newUser({ avatarUri, displayName, id }){
-        this._usersArray.push({ avatarUri, displayName, id });
+    newUser({ avatarUri, username, id }){
+        this._usersArray.push({ avatarUri, username, id });
         this._cacheUserIndexes();
         this._newUserTarget.dispatchEvent(new Event(newUserEventId));
 
         console.debug(`${logGroup} New user with id: ${id}`);
     }
 
-    upsertUser({ avatarUri, displayName, id }){
+    upsertUser({ avatarUri, username, id }){
         const userIdx = this._userIdToIdx[id];
-        if (userIdx === undefined) return this.newUser({ avatarUri, displayName, id });
-        return this.updateUserById(id, { avatarUri, displayName });
+        if (userIdx === undefined) return this.newUser({ avatarUri, username, id });
+        return this.updateUserById(id, { avatarUri, username });
     }
 
     getUsers(){

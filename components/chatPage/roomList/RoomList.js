@@ -15,7 +15,7 @@ export const InitRoomList = ({  roomStore, userStore, showLoginPicker, showCreat
         let idx = 0;
         for (const child of node.children)
         {
-            if (chats[idx].displayName.toLowerCase().includes(query)){
+            if (chats[idx].username.toLowerCase().includes(query)){
                 child.style.display = 'flex';
             } else {
                 child.style.display = 'none';
@@ -26,6 +26,5 @@ export const InitRoomList = ({  roomStore, userStore, showLoginPicker, showCreat
 
     roomStore.getRooms().forEach(addRoom);
     roomStore.subscribeOnNewRoom(( { detail }) => addRoom(detail.room))
-    
     return node;
 }

@@ -22,18 +22,26 @@ export const timestampToTime = (timestamp) => new Intl.DateTimeFormat('default',
         minute: 'numeric'
     }).format(timestamp).toUpperCase();
 
+export const tryParseTimestamp = (timestamp) => {
+    let result = null;
+    try {
+        result = new Date(Date.parse(timestamp));
+    } catch { }
+    if (isNaN(result)) result = null;
+    return result;
+}
 
 export const respondToVisibility = (element, callback) => {
     // src: https://stackoverflow.com/a/44670818/9415337
     var options = {
-      root: document.documentElement,
+        root: document.documentElement,
     };
-  
+
     var observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        callback(entry.intersectionRatio > 0);
-      });
+        entries.forEach(entry => {
+            callback(entry.intersectionRatio > 0);
+        });
     }, options);
-  
+
     observer.observe(element);
 }

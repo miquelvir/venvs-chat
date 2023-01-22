@@ -12,17 +12,18 @@ import { InitNewRoomPage } from './components/newRoomPage/NewRoomPage.js';
 
 var ChatController = {
     // state
-    _roomStore: null,  // todo rename to rooms
+    _roomStore: null,
     _messageStore: null,
     _userStore: null,
     _currentUserIdStore: null,
+    _currentPage: null,
 
     // init
     init: () => {
         // stores (keep track of state and alllow subscription to changes)
         ChatController._messageStore = new MessageStore();
         ChatController._roomStore = new RoomStore({ messageStore: ChatController._messageStore });
-        ChatController._userStore = new UserStore([{ id: INTERNAL_CURRENT_USER_ID, avatarUri: 'public/avatars/default-avatar.jpg', displayName: 'unnamed' }]);  // initialise the user store with the internal user representing the current user
+        ChatController._userStore = new UserStore([{ id: INTERNAL_CURRENT_USER_ID, avatarUri: 'public/default-avatar.jpg', username: 'unnamed' }]);  // initialise the user store with the internal user representing the current user
         ChatController._currentUserIdStore = new CurrentUserIdStore();
 
         // init components
@@ -32,6 +33,15 @@ var ChatController = {
         InitRoomList({ roomStore: ChatController._roomStore, userStore: ChatController._userStore, showLoginPicker: ChatController._avatarPickerPage, showCreateRoomPage: ChatController._newRoomPage });
         InitRealtimeSyncronizer({ roomStore: ChatController._roomStore, userStore: ChatController._userStore, currentUserIdStore: ChatController._currentUserIdStore, messageStore: ChatController._messageStore })
         InitNewRoomPage({ roomStore: ChatController._roomStore, nextPage: ChatController._chatPage });
+        
+        // allow shortcuts to navigate between pages
+        document.addEventListener('keydown', function(e) {
+            if(e.key == 'Escape'){
+              if ([Page.NewRoomPage, Page.AvatarPicker].includes(ChatController._currentPage)) {
+                ChatController._chatPage();
+              }
+            }
+        });
 
         // show the login page
         ChatController._loginPage();
@@ -51,24 +61,10 @@ var ChatController = {
                 document.querySelector(`#${page}`).style.display = 'none';
             }
         });
+        ChatController._currentPage = selectedPage;
     },
 }
 
 ChatController.init();
 
 // todo mobile
-// todo agenjo slide
-// todo max width of messages
-// todo bug not scrolling to bottom on init
-// todo nice animation or something in the login page
-// todo avatar picker on home page
-// todo default character avatars
-// todo favicon
-// todo search through chats
-// todo use name instead of user id?
-// todo update previous messages profile pictures
-// todo just show pfp on first message
-// todo private messages
-// todo all unsubscribes
-// todo remove console logs
-// todo to sync component

@@ -6,9 +6,11 @@ export const InitNewRoomPage = ({ nextPage, roomStore }) => {
         if (event.key !== "Enter") return;
         event.preventDefault();
 
+        if (!newRoomInput.value.trim()) nextPage(); // leave without changes
+
         roomStore.createRoom({ 
-            avatarUri: '/public/avatars/default-avatar.jpg', 
-            displayName: newRoomInput.value, 
+            avatarUri: '/public/default-avatar.jpg', 
+            username: newRoomInput.value, 
             id: newRoomInput.value
         });
 

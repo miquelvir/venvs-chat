@@ -8,7 +8,7 @@ export const InitLoginPage = ({ nextPage, userStore }) => {
         if (event.key !== "Enter") return;
         event.preventDefault();
 
-        userStore.updateUserById(INTERNAL_CURRENT_USER_ID, { displayName: usernameInput.value });
+        userStore.updateUserById(INTERNAL_CURRENT_USER_ID, { username: usernameInput.value });
         nextPage();
     });
 

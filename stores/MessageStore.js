@@ -1,5 +1,6 @@
-import { Side, Status, MessageContentType, LineType } from "../constants.js";
+import { Side, Status, MessageType } from "../constants.js";
 import { uuid4 } from "../utils.js";
+import { tryParseTimestamp } from "../utils.js";
 
 const logGroup = '[MessageStore]';
 const newMessageEventId = 'new-message';
@@ -19,12 +20,12 @@ export class MessageStore {
         console.debug(`${logGroup} Reset completed`);
     }
     
-    newMessage({content, timestamp, status, side, contentType, userId }){
+    newMessage({content, timestamp, side = Side.RECEIVED, type, userId }){
         if (!userId) throw new Error(`userId is required.`);
         if (!Object.values(Side).includes(side)) throw new Error(`Message side ${side} is not a valid Side.`);
-        if (!Object.values(Status).includes(status)) throw new Error(`Message status ${status} is not a valid Status.`);
-        if (!Object.values(MessageContentType).includes(contentType)) throw new Error(`Message contentType ${contentType} is not a valid MessageContentType.`);
-        const message = {content, timestamp, status, side, contentType, type: LineType.Message, userId };
+        if (!Object.values(MessageType).includes(type)) throw new Error(`Message type ${type} is not a valid MessageType.`);
+        const validatedTimestamp = tryParseTimestamp(timestamp) ?? new Date()
+        const message = {content, timestamp: validatedTimestamp, side, type, userId };
         this._messagesArray.push(message);
         this._newMessageTarget.dispatchEvent(new CustomEvent(newMessageEventId, { 'detail': { 'message' : message }}));
 

@@ -19,7 +19,7 @@ export const InitChat = ({ roomStore, userStore, messageStore }) => {
         const selectedChat = roomStore.getRoomById(selectedChatId);
         profilePictureNode.style.visibility = 'visible';
         input.style.visibility = 'visible';
-        document.querySelector(".header .displayName").innerHTML = selectedChat.displayName;
+        document.querySelector(".header .username").innerHTML = selectedChat.username;
     }
 
     roomStore.subscribeOnSelectedRoomChanged(init);
