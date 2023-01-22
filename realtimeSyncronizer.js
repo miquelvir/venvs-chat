@@ -13,7 +13,8 @@ export const InitRealtimeSyncronizer = ({ userStore, roomStore, currentUserIdSto
             ...internalMessage,
             username: my.username,
             avatarUri: my.avatarUri,
-            userId: internalMessage.userId === INTERNAL_CURRENT_USER_ID ? currentUserIdStore.getId() : internalMessage.userId
+            userId: internalMessage.userId === INTERNAL_CURRENT_USER_ID ? currentUserIdStore.getId() : internalMessage.userId,
+            side: Side.RECEIVED
         }
     }
 

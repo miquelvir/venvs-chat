@@ -4,6 +4,9 @@ miquel.vazquez02@estudiant.upf.edu
 NIA
 229232
 
+STAGING
+Test the chat here: https://miquelvir.github.io/venvs-chat/
+
 OVERVIEW
 - The web is a single HTML file. 
 - Inside that one HTML, there are multiple pages (avatarPicker, chat, login, ...) which are set to display none when they should not be visible.
