@@ -1,5 +1,5 @@
 const WS_SERVER_URI = "wss://ecv-etic.upf.edu/node/9000/ws";
-import { INTERNAL_CURRENT_USER_ID, Status, Side, MessageContentType } from './enums.js';
+import { INTERNAL_CURRENT_USER_ID, Status, Side, MessageContentType } from './constants.js';
 
 const logGroup = '[RealtimeSyncronizer]';
 

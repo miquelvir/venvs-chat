@@ -1,17 +1,10 @@
 import { CreateRoomListItem } from "./RoomListItem.js";
 import { InitCurrentUserInfo } from "../CurrentUserInfo.js";
 
-export const InitRoomList = ({  roomStore, userStore, showLoginPicker }) => {
+export const InitRoomList = ({  roomStore, userStore, showLoginPicker, showCreateRoomPage }) => {
     InitCurrentUserInfo({ userStore, showLoginPicker });
 
-    document.querySelector("#newGroupButton").addEventListener('click', () => {
-        const displayName = prompt("Room name"); // todo dont use prompt
-        roomStore.createRoom({ 
-            avatarUri: '/public/avatars/default-avatar.jpg', 
-            displayName: displayName, 
-            id: displayName
-        })
-    })
+    document.querySelector("#newRoomButton").addEventListener('click', showCreateRoomPage);
     
     const node = document.querySelector("#chatsList");
     const addRoom = (room) => node.appendChild(CreateRoomListItem({userStore, ...room, roomStore, selectedByDefault: roomStore.getSelectedRoomId() === room.id}));

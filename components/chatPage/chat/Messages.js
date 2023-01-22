@@ -1,5 +1,5 @@
 import { chatLineFactory } from './chatLineFactory.js';
-import { LineType } from "../../../enums.js";
+import { LineType } from "../../../constants.js";
 
 export const constructLines = (messages) => {
     const lines = [];

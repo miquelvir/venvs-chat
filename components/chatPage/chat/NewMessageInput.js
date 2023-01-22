@@ -1,4 +1,4 @@
-import { LineType, Status, Side, MessageContentType, INTERNAL_CURRENT_USER_ID } from "../../../enums.js";
+import { LineType, Status, Side, MessageContentType, INTERNAL_CURRENT_USER_ID } from "../../../constants.js";
 
 const WELL_KNOWN_EMOJIS = {
     ':)': '☺️',

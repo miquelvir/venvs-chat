@@ -22,7 +22,8 @@ export const MessageContentType = {
 export const Page = { 
     Login: 'loginPage',
     Chat: 'chatPage',
-    AvatarPicker: 'avatarPickerPage'
+    AvatarPicker: 'avatarPickerPage',
+    NewRoomPage: 'newRoomPage'
 }
 
 export const INTERNAL_CURRENT_USER_ID = -1;

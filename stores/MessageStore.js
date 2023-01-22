@@ -1,4 +1,4 @@
-import { Side, Status, MessageContentType, LineType } from "../enums.js";
+import { Side, Status, MessageContentType, LineType } from "../constants.js";
 import { uuid4 } from "../utils.js";
 
 const logGroup = '[MessageStore]';

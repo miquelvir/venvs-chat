@@ -1,4 +1,4 @@
-import { INTERNAL_CURRENT_USER_ID } from "../../enums.js";
+import { INTERNAL_CURRENT_USER_ID } from "../../constants.js";
 
 export const InitLoginPage = ({ nextPage, userStore }) => {
     const usernameInput = document.querySelector("#usernameInput");

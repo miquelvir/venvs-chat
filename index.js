@@ -2,13 +2,13 @@ import { InitRoomList } from './components/chatPage/roomList/RoomList.js';
 import { InitChat } from './components/chatPage/chat/Chat.js';
 import { RoomStore } from './stores/RoomStore.js';
 import { UserStore } from './stores/UserStore.js';
-import { INTERNAL_CURRENT_USER_ID, Page } from './enums.js';
+import { INTERNAL_CURRENT_USER_ID, Page } from './constants.js';
 import { InitLoginPage } from './components/loginPage/LoginPage.js';
 import { CurrentUserIdStore } from './stores/CurrentUserIdStore.js';
 import { InitAvatarPickerPage } from './components/avatarPickerPage/AvatarPickerPage.js';
 import { InitRealtimeSyncronizer } from './realtimeSyncronizer.js';
 import { MessageStore } from './stores/MessageStore.js';
-
+import { InitNewRoomPage } from './components/newRoomPage/NewRoomPage.js';
 
 var ChatController = {
     // state
@@ -29,9 +29,10 @@ var ChatController = {
         InitLoginPage({ nextPage: ChatController._avatarPickerPage, userStore: ChatController._userStore });
         InitAvatarPickerPage({ userStore: ChatController._userStore, nextPage: ChatController._chatPage });
         InitChat({ roomStore: ChatController._roomStore, userStore: ChatController._userStore, messageStore: ChatController._messageStore });
-        InitRoomList({ roomStore: ChatController._roomStore, userStore: ChatController._userStore, showLoginPicker: ChatController._avatarPickerPage });
+        InitRoomList({ roomStore: ChatController._roomStore, userStore: ChatController._userStore, showLoginPicker: ChatController._avatarPickerPage, showCreateRoomPage: ChatController._newRoomPage });
         InitRealtimeSyncronizer({ roomStore: ChatController._roomStore, userStore: ChatController._userStore, currentUserIdStore: ChatController._currentUserIdStore, messageStore: ChatController._messageStore })
-        
+        InitNewRoomPage({ roomStore: ChatController._roomStore, nextPage: ChatController._chatPage });
+
         // show the login page
         ChatController._loginPage();
     },
@@ -40,6 +41,7 @@ var ChatController = {
     _loginPage: () => ChatController.__showPage(Page.Login),
     _chatPage: () => ChatController.__showPage(Page.Chat),
     _avatarPickerPage: () => ChatController.__showPage(Page.AvatarPicker),
+    _newRoomPage: () => ChatController.__showPage(Page.NewRoomPage),
     __showPage: (selectedPage) => {
         if (!Object.values(Page).includes(selectedPage)) throw new Error(`Page ${selectedPage} is not a valid Page.`);
         Object.values(Page).forEach((page) => {

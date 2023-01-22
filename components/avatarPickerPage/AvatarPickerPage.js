@@ -1,6 +1,6 @@
 import { GetAvatar } from "./Avatar.js";
 import { respondToVisibility } from "../../utils.js";
-import { INTERNAL_CURRENT_USER_ID } from "../../enums.js";
+import { INTERNAL_CURRENT_USER_ID } from "../../constants.js";
 
 const avatarUris = [
     'https://avataaars.io/?avatarStyle=Transparent&topType=LongHairFro&accessoriesType=Round&hairColor=BrownDark&facialHairType=Blank&clotheType=Hoodie&clotheColor=PastelOrange&eyeType=Squint&eyebrowType=Default&mouthType=Twinkle&skinColor=Brown',
